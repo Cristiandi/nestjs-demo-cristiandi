@@ -16,21 +16,21 @@ export class BooksController {
 
     @Get()
     async getBooks(): Promise<Book[]> {
-        Logger.log('getting all books');
+        Logger.log('getting all books', BooksController.name);
         const books = await this.booksService.getBooks();
         return books;
     }
 
     @Get(':bookId')
     async getBook(@Param('bookId') bookId): Promise<Book> {
-        Logger.log('getting one book', typeof bookId);
+        Logger.log('getting one book', BooksController.name);
         const book = await this.booksService.getBook(bookId);
         return book;
     }
 
     @Patch(':bookId')
     async updateBook(@Param('bookId') bookId,  @Body() updateBookDTO: UpdateBookDTO): Promise<Book[]> {
-        Logger.log('updating one book');
+        Logger.log('updating one book', BooksController.name);
         const books = await this.booksService.updateBook(bookId, updateBookDTO);
 
         return books;
@@ -38,6 +38,7 @@ export class BooksController {
 
     @Delete()
     async deleteBook(@Query() query): Promise<Book[]> {
+        Logger.log('deleting one book', BooksController.name);
         const books = await this.booksService.deleteBook(query.bookID);
         return books;
     }
