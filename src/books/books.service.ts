@@ -1,4 +1,4 @@
-import { Injectable, HttpException } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Book } from './books.interface';
 import { BOOKS } from '../mocks/books.mock';
 
@@ -22,7 +22,7 @@ export class BooksService {
     const book = this.books.find(item => item.id === id);
 
     if (!book) {
-      throw new HttpException('book does not exists!', 404);
+      throw new HttpException('book does not exists!', HttpStatus.NOT_FOUND);
     }
 
     return Promise.resolve(book);
@@ -34,7 +34,7 @@ export class BooksService {
     const existingBook = this.books.find(item => item.id === id);
 
     if (!existingBook) {
-      throw new HttpException('book does not exists!', 404);
+      throw new HttpException('book does not exists!', HttpStatus.NOT_FOUND);
     }
 
     this.books = this.books.map(item => {
@@ -52,7 +52,7 @@ export class BooksService {
     const id = Number(bookId);
     const index =  this.books.findIndex(item => item.id === id);
     if (index === -1) {
-      throw new HttpException('book does not exists!', 404);
+      throw new HttpException('book does not exists!', HttpStatus.NOT_FOUND);
     }
 
     this.books = this.books.filter(item => item.id !== bookId);

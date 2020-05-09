@@ -1,10 +1,14 @@
-import { Controller, Get, Param, Post, Body, Query, Delete, Patch, Logger } from '@nestjs/common';
-import { BooksService } from './books.service';
+import { Controller, Get, Param, Post, Body, Query, Delete, Patch, Logger, UseFilters } from '@nestjs/common';
+
+import { Book } from './books.interface';
 import { CreateBookDTO } from './dto/create-book.dto';
 import { UpdateBookDTO } from './dto/update-book-dto';
-import { Book } from './books.interface';
+import { BooksService } from './books.service';
+
+import { HttpExceptionFilter } from 'src/common/exception-filter/http-exception.filter';
 
 @Controller('books')
+@UseFilters(HttpExceptionFilter)
 export class BooksController {
     constructor(private booksService: BooksService) { }
 
