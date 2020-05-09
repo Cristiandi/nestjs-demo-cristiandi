@@ -9,7 +9,7 @@ import {
 import { AppController } from './app.controller';
 import { BooksController } from './books/books.controller';
 import { AppService } from './app.service';
-import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { BooksModule } from './books/books.module';
 
 @Module({
