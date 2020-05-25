@@ -15,7 +15,7 @@ export class AddUserMiddleware implements NestMiddleware {
       username: 'test',
       email: 'test@test.com',
       roles: [
-        'user'
+        'admin'
       ]
     };
 

@@ -10,7 +10,8 @@ import {
     Logger,
     UseFilters,
     UsePipes,
-    UseGuards
+    UseGuards,
+    UseInterceptors
 } from '@nestjs/common';
 
 import { Book } from './books.interface';
@@ -28,11 +29,14 @@ import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
 import { ValidationPipe } from 'src/common/pipes/validation.pipe';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/roles/roles.decorator';
+import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
+import { TransformInterceptor } from 'src/common/interceptors/transform.interceptor';
 
 
 
 @Controller('books')
 @UseFilters(HttpExceptionFilter)
+@UseInterceptors(LoggingInterceptor)
 export class BooksController {
     constructor(private booksService: BooksService) { }
 
@@ -46,6 +50,7 @@ export class BooksController {
     }
 
     @Get()
+    @UseInterceptors(TransformInterceptor)
     async getBooks(): Promise<Book[]> {
         Logger.log('getting all books', BooksController.name);
         const books = await this.booksService.getBooks();
