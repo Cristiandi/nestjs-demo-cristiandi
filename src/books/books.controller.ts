@@ -1,4 +1,17 @@
-import { Controller, Get, Param, Post, Body, Query, Delete, Patch, Logger, UseFilters, UsePipes } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Param,
+    Post,
+    Body,
+    Query,
+    Delete,
+    Patch,
+    Logger,
+    UseFilters,
+    UsePipes,
+    UseGuards
+} from '@nestjs/common';
 
 import { Book } from './books.interface';
 
@@ -13,6 +26,8 @@ import { BooksService } from './books.service';
 import { HttpExceptionFilter } from 'src/common/exception-filters/http-exception.filter';
 import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
 import { ValidationPipe } from 'src/common/pipes/validation.pipe';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/roles/roles.decorator';
 
 
 
@@ -22,7 +37,9 @@ export class BooksController {
     constructor(private booksService: BooksService) { }
 
     @Post()
+    @Roles('admin')
     @UsePipes(new JoiValidationPipe(createSchema.body))
+    @UseGuards(RolesGuard)
     async addBook(@Body() createBookDTO: CreateBookDTO): Promise<Book[]> {
         const books = await this.booksService.addBook(createBookDTO);
         return books;

@@ -9,7 +9,10 @@ import {
 import { AppController } from './app.controller';
 import { BooksController } from './books/books.controller';
 import { AppService } from './app.service';
+
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { AddUserMiddleware } from './common/middlewares/temp.add-user.middleware';
+
 import { BooksModule } from './books/books.module';
 
 @Module({
@@ -28,12 +31,15 @@ export class AppModule implements NestModule {
           },
         }),
         LoggerMiddleware,
+        AddUserMiddleware
       )
+      /*
       .exclude(
         { path: 'books', method: RequestMethod.GET },
         { path: 'books', method: RequestMethod.POST },
         'books/(.*)',
       )
+      */
       .forRoutes(BooksController);
     //.forRoutes('') // for all routes
   }
