@@ -24,13 +24,13 @@ import { createSchema } from './schemas/create-book.schema';
 
 import { BooksService } from './books.service';
 
-import { HttpExceptionFilter } from 'src/common/exception-filters/http-exception.filter';
-import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
-import { ValidationPipe } from 'src/common/pipes/validation.pipe';
-import { RolesGuard } from 'src/common/guards/roles.guard';
-import { Roles } from 'src/roles/roles.decorator';
-import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
-import { TransformInterceptor } from 'src/common/interceptors/transform.interceptor';
+import { HttpExceptionFilter } from '../common/exception-filters/http-exception.filter';
+import { JoiValidationPipe } from '../common/pipes/joi-validation.pipe';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
+import { RolesGuard } from '../common/guards/roles.guard';
+import { Roles } from '../roles/roles.decorator';
+import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
+import { TransformInterceptor } from '../common/interceptors/transform.interceptor';
 
 
 
