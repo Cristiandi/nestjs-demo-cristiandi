@@ -28,7 +28,7 @@
     "class-transformer": "0.2.3",
     "class-validator": "0.12.2",
     "cors": "2.8.5",
-    "helmet": "3.23.3",
+    "helmet": "4.1.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "6.6.0"
